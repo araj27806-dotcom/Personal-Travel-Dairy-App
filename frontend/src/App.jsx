@@ -6,7 +6,6 @@ import SignUp from "./pages/Auth/SignUp"
 
 const App = () => {
   return (
-    <>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -14,7 +13,6 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
-    </>
   )
 }
 
