@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import authRoutes from "./routes/auth.route.js";
 
 // Load environment variables from .env file
 dotenv.config()
@@ -15,14 +16,19 @@ mongoose.connect(process.env.MONGO_URI).then(
 });
 
 const app = express();
-const PORT = 3000;
+
+// Middleware to parse JSON requests
+app.use(express.json());
+
 
 // Default route
 app.get("/", (req, res) => {
   res.send("✅ Server is running on port 3000");
 });
 
+app.use("/api/auth", authRoutes);
+
 // Start server
-app.listen(3000, () => {
-  console.log(`🚀 Server is running on http://localhost:${3000}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
